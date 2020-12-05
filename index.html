@@ -11,9 +11,19 @@
 
 <body>
 
+<div id="kitty">Waiting for kitty</div>
   <!-- Add your site or application content here -->
-  <p>Hello world! This is HTML5 Boilerplate.</p>
-
+  <script>
+    fetch('https://api.thecatapi.com/v1/images/search').then(async (data) => {
+      return await data.json();
+    }).then((trueData) => {
+      const cont = document.getElementById("kitty")
+      cont.innerHTML = `<img src="${trueData[0].url} />"`
+      const img = document.createElement('img');
+      img.src = trueData[0].url
+      cont.appendChild(img)
+    })
+  </script>
 </body>
 
 </html>
